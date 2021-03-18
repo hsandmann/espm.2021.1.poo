@@ -6,14 +6,16 @@ public class Cliente {
 
     private final UUID uuid;
     private String nome;
+    private String telefone;
     private Conta conta;
 
     public Cliente() {
         this.uuid = UUID.randomUUID();
+        this.conta = new Conta();
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public String getId() {
+        return uuid.toString();
     }
 
     public String getNome() {
@@ -21,7 +23,10 @@ public class Cliente {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if (null == nome || nome.trim().length() == 0) {
+            throw new RuntimeException("Nome nao pode ser vazio");
+        }
+        this.nome = nome.trim();
     }
 
     public Conta getConta() {
@@ -30,6 +35,14 @@ public class Cliente {
 
     public void setConta(Conta conta) {
         this.conta = conta;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
 }

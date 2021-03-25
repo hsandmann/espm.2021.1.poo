@@ -1,18 +1,21 @@
 package br.espm.poo.aula05;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Cliente[] clientes = new Cliente[3];
+        List<Cliente> clientes = new ArrayList<>();
         int indexCliente = 0;
 
         Scanner scanner = new Scanner(System.in);
+        boolean running = true;
         String line;
-        do {
+        while (running) {
             System.out.print("> ");
             line = scanner.nextLine();
             switch (line.toLowerCase()) {
@@ -21,19 +24,34 @@ public class Main {
                     break;
                 case "bye":
                 case "exit":
+                    running = false;
                     break;
                 case "1":
-                    clientes[indexCliente++ % clientes.length] = cadastrarCliente();
+                case "add":
+                    clientes.add(cadastrarCliente());
                     break;
                 case "2":
                 case "list":
                     listarClientes(clientes);
                     break;
+                case "3":
+                case "deL":
+                    System.out.println("Para fazer. TODO");
+                case "4":
+                case "sacar":
+                    System.out.println("Para fazer. TODO");
+                case "5":
+                case "depositar":
+                    System.out.println("Para fazer. TODO");
+                case "6":
+                case "Buscar":
+                    System.out.println("Buscar pelo nome. TODO");
                 default:
                     System.out.println("Opcao invalida");
             }
 
-        } while (!line.equals("bye"));
+        }
+        System.out.println("Bye bye!");
 
     }
 
@@ -67,7 +85,7 @@ public class Main {
         return cliente;
     }
 
-    public static void listarClientes(Cliente[] clientes) {
+    public static void listarClientes(List<Cliente> clientes) {
 //        for (int i = 0; i < clientes.length; i++) {
 //            Cliente c = clientes[i];
 //            if (c != null) {
@@ -79,11 +97,12 @@ public class Main {
 //                System.out.println(c.getUuid() + " - " + c.getNome());
 //            }
 //        }
-        Arrays.stream(clientes).forEach(c -> {
-            if (c != null) {
-                System.out.println(c.getId() + " - " + c.getNome() + " - " + c.getTelefone());
-            }
-        });
+//        Arrays.stream(clientes).forEach(c -> {
+//            if (c != null) {
+//                System.out.println(c);
+//            }
+//        });
+        clientes.forEach(cliente -> System.out.println(cliente));
     }
 
     private static String inputTipoPessoa() {

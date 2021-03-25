@@ -2,14 +2,14 @@ package br.espm.poo.aula05;
 
 import java.util.UUID;
 
-public class Cliente {
+public abstract class Cliente {
 
     private final UUID uuid;
     private String nome;
     private String telefone;
-    private Conta conta;
+    protected Conta conta;
 
-    public Cliente() {
+    protected Cliente() {
         this.uuid = UUID.randomUUID();
         this.conta = new Conta();
     }
@@ -43,6 +43,16 @@ public class Cliente {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "uuid=" + uuid +
+                ", nome='" + getNome() + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", conta=" + conta +
+                '}';
     }
 
 }

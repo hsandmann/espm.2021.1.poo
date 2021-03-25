@@ -2,6 +2,11 @@ package br.espm.poo.aula05;
 
 public class PessoaJuridica extends Cliente {
 
+    PessoaJuridica() {
+        super();
+        this.conta.setLimite(1000);
+    }
+
     private String cnpj;
 
     public String getCnpj() {

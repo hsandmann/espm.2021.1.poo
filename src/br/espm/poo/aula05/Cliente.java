@@ -14,7 +14,7 @@ public abstract class Cliente {
         this.conta = new Conta();
     }
 
-    public String getId() {
+    public final String getId() {
         return uuid.toString();
     }
 
@@ -49,7 +49,7 @@ public abstract class Cliente {
     public String toString() {
         return "Cliente{" +
                 "uuid=" + uuid +
-                ", nome='" + getNome() + '\'' +
+                ", nome='" + nome + '\'' +
                 ", telefone='" + telefone + '\'' +
                 ", conta=" + conta +
                 '}';

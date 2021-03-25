@@ -1,8 +1,12 @@
 package br.espm.poo.aula05;
 
-public class PessoaFisica extends Cliente {
+import java.util.List;
+
+public final class PessoaFisica extends Cliente {
 
     private String cpf;
+    private List<PessoaFisica> dependentes;
+    private PessoaJuridica empresa;
 
     public PessoaFisica() {
         super();
@@ -17,9 +21,20 @@ public class PessoaFisica extends Cliente {
         this.cpf = cpf;
     }
 
-    @Override
-    public String getNome() {
-        return "PF: " + super.getNome();
+    public List<PessoaFisica> getDependentes() {
+        return dependentes;
+    }
+
+    public void setDependentes(List<PessoaFisica> dependentes) {
+        this.dependentes = dependentes;
+    }
+
+    public PessoaJuridica getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(PessoaJuridica empresa) {
+        this.empresa = empresa;
     }
 
 }

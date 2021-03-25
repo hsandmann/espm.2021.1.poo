@@ -1,7 +1,6 @@
 package br.espm.poo.aula05;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -40,6 +39,8 @@ public class Main {
                 case "4":
                 case "sacar":
                     System.out.println("Para fazer. TODO");
+                    // TODO: se pessoa fisica so pode sacar ate 500
+                    // TODO: se PJ pode sacar ate 2000
                 case "5":
                 case "depositar":
                     System.out.println("Para fazer. TODO");
@@ -102,7 +103,16 @@ public class Main {
 //                System.out.println(c);
 //            }
 //        });
-        clientes.forEach(cliente -> System.out.println(cliente));
+        clientes.forEach(cliente -> {
+            System.out.println(cliente.getClass().getName());
+            if (cliente instanceof PessoaFisica) {
+                PessoaFisica pf = (PessoaFisica) cliente; // cast de tipo
+                System.out.println(pf.getCpf() + " - " + cliente);
+            } else if (cliente instanceof PessoaJuridica) {
+                PessoaJuridica ph = (PessoaJuridica) cliente;
+                System.out.println(cadastrarPJ().getCnpj() + " - " + cliente);
+            }
+        });
     }
 
     private static String inputTipoPessoa() {

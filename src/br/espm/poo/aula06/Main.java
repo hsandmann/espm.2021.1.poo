@@ -42,7 +42,7 @@ public class Main {
         Collections.sort(listanomes);
         System.out.println(Arrays.toString(listanomes.toArray()));
 
-        Map<Integer, String> map = new TreeMap<>();
+        Map<Integer, String> map = new HashMap<>();
         map.put(1, "Rafael");
         map.put(4, "Antonio");
         map.put(10, "Julia");

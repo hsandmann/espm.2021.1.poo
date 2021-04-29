@@ -15,40 +15,50 @@ public class Main {
         boolean running = true;
         String line;
         while (running) {
-            System.out.print("> ");
-            line = scanner.nextLine();
-            switch (line.toLowerCase()) {
-                case "help":
-                    printMenu();
-                    break;
-                case "bye":
-                case "exit":
-                    running = false;
-                    break;
-                case "1":
-                case "add":
-                    clientes.add(cadastrarCliente());
-                    break;
-                case "2":
-                case "list":
-                    listarClientes(clientes);
-                    break;
-                case "3":
-                case "deL":
-                    System.out.println("Para fazer. TODO");
-                case "4":
-                case "sacar":
-                    System.out.println("Para fazer. TODO");
-                    // TODO: se pessoa fisica so pode sacar ate 500
-                    // TODO: se PJ pode sacar ate 2000
-                case "5":
-                case "depositar":
-                    System.out.println("Para fazer. TODO");
-                case "6":
-                case "Buscar":
-                    System.out.println("Buscar pelo nome. TODO");
-                default:
-                    System.out.println("Opcao invalida");
+            try {
+                System.out.print("> ");
+                line = scanner.nextLine();
+                switch (line.toLowerCase()) {
+                    case "help":
+                        printMenu();
+                        break;
+                    case "bye":
+                    case "exit":
+                        running = false;
+                        break;
+                    case "1":
+                    case "add":
+                        clientes.add(cadastrarCliente());
+                        break;
+                    case "2":
+                    case "list":
+                        listarClientes(clientes);
+                        break;
+                    case "3":
+                    case "deL":
+                        System.out.println("Para fazer. TODO");
+                    case "4":
+                    case "sacar":
+                        System.out.println("Para fazer. TODO");
+                        //                    throw new RuntimeException("Nao foi feito");
+                        int x = 4 / 0;
+                        // TODO: se pessoa fisica so pode sacar ate 500
+                        // TODO: se PJ pode sacar ate 2000
+                    case "5":
+                    case "depositar":
+                        System.out.println("Para fazer. TODO");
+                        int[] vec = {0, 1};
+                        System.out.println(vec[4]);
+                    case "6":
+                    case "Buscar":
+                        System.out.println("Buscar pelo nome. TODO");
+                    default:
+                        System.out.println("Opcao invalida");
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println(e.getMessage());
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
             }
 
         }
@@ -60,6 +70,10 @@ public class Main {
         System.out.println("--- Menu ---");
         System.out.println("1. Cadastra Cliente");
         System.out.println("2. Listar Clientes");
+        System.out.println("3. Apagar");
+        System.out.println("4. Depositar");
+        System.out.println("5. Sacar");
+        System.out.println("6. Buscar");
     }
 
     public static Cliente cadastrarCliente() {
@@ -87,30 +101,14 @@ public class Main {
     }
 
     public static void listarClientes(List<Cliente> clientes) {
-//        for (int i = 0; i < clientes.length; i++) {
-//            Cliente c = clientes[i];
-//            if (c != null) {
-//                System.out.println(c.getUuid() + " - " + c.getNome());
-//            }
-//        }
-//        for (Cliente c : clientes) {
-//            if (c != null) {
-//                System.out.println(c.getUuid() + " - " + c.getNome());
-//            }
-//        }
-//        Arrays.stream(clientes).forEach(c -> {
-//            if (c != null) {
-//                System.out.println(c);
-//            }
-//        });
         clientes.forEach(cliente -> {
             System.out.println(cliente.getClass().getName());
             if (cliente instanceof PessoaFisica) {
                 PessoaFisica pf = (PessoaFisica) cliente; // cast de tipo
-                System.out.println(pf.getCpf() + " - " + cliente);
+                System.out.println(pf.getConta().getSaldo() + ' ' + pf.getCpf() + " - " + cliente);
             } else if (cliente instanceof PessoaJuridica) {
-                PessoaJuridica ph = (PessoaJuridica) cliente;
-                System.out.println(cadastrarPJ().getCnpj() + " - " + cliente);
+                PessoaJuridica pj = (PessoaJuridica) cliente;
+                System.out.println(pj.getConta().getSaldo() + ' ' + pj.getCnpj() + " - " + cliente);
             }
         });
     }
